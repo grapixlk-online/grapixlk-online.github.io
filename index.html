@@ -3,359 +3,357 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GrapiX LK — Premium Graphic Design</title>
+  <title>GrapiX LK — Premium Matte Design</title>
 
   <style>
     :root{
-      --bg:#06070b;
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.70);
-      --glass:rgba(255,255,255,.08);
-      --stroke:rgba(255,255,255,.14);
-      --shadow:0 18px 60px rgba(0,0,0,.55);
-      --r:22px;
+      --bg: #0b0c10;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.08);
+      --stroke: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --shadow: 0 18px 55px rgba(0,0,0,.55);
+      --r: 22px;
     }
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      color:var(--text);
-      background:
-        radial-gradient(1100px 650px at 18% 8%, rgba(120,70,255,.22), transparent 60%),
-        radial-gradient(900px 600px at 80% 18%, rgba(0,255,200,.14), transparent 55%),
-        radial-gradient(1000px 650px at 52% 90%, rgba(255,60,140,.12), transparent 60%),
-        var(--bg);
+      color: var(--text);
+      background: var(--bg);
       overflow-x:hidden;
     }
 
-    /* wallpaper background (your uploaded image) */
-    .wallpaper{
-      position:fixed; inset:0; z-index:0;
-      background-image: url("assets/images/bgwallpaper.png");
+    /* Matte background texture (your bgwallpaper.png) */
+    .bg{
+      position:fixed; inset:0; z-index:0; pointer-events:none;
+      background:
+        radial-gradient(1100px 650px at 15% 10%, rgba(120,70,255,.18), transparent 60%),
+        radial-gradient(900px 600px at 85% 15%, rgba(0,255,200,.12), transparent 55%),
+        radial-gradient(1000px 650px at 50% 90%, rgba(255,60,140,.10), transparent 60%),
+        url("assets/images/bgwallpaper.png");
       background-size: cover;
       background-position: center;
-      opacity:.18;              /* adjust if you want more/less */
-      filter: blur(0px);
-      pointer-events:none;
+      opacity: .25;
+      filter: saturate(.9) contrast(1.05);
     }
-    .wallpaper::after{
+    .bg::after{
       content:"";
       position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(6,7,11,.75), rgba(6,7,11,.92));
+      background: linear-gradient(180deg, rgba(11,12,16,.82), rgba(11,12,16,.92));
     }
 
-    /* subtle moving blobs */
-    .blobs{position:fixed; inset:0; pointer-events:none; filter:blur(40px); opacity:.75; z-index:0;}
-    .blob{position:absolute; width:520px; height:520px; border-radius:999px; animation:float 12s ease-in-out infinite;}
-    .b1{left:-170px; top:-150px; background:rgba(120,70,255,.22)}
-    .b2{right:-230px; top:50px; background:rgba(0,255,200,.14); animation-delay:-3s}
-    .b3{left:25%; bottom:-270px; background:rgba(255,60,140,.12); animation-delay:-6s}
-    @keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-28px) scale(1.04)}}
-
-    .container{width:min(1100px, 92vw); margin:0 auto; padding:20px 0 70px; position:relative; z-index:2;}
-    .glass{
-      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
-      border:1px solid var(--stroke);
-      box-shadow:var(--shadow);
-      border-radius:var(--r);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+    .wrap{
+      position:relative; z-index:1;
+      width:min(1100px, 92vw);
+      margin: 0 auto;
+      padding: 18px 0 70px;
     }
 
-    /* nav */
-    header{position:sticky; top:14px; z-index:50;}
-    .nav{display:flex; justify-content:space-between; align-items:center; padding:14px 16px; gap:12px;}
-    .brand{display:flex; gap:10px; align-items:center; text-decoration:none; color:var(--text); font-weight:800;}
-    .logoWrap{
-      width:42px; height:42px; border-radius:14px;
-      border:1px solid rgba(255,255,255,.18);
+    /* Matte panels */
+    .panel{
+      background: linear-gradient(180deg, var(--panel2), var(--panel));
+      border: 1px solid var(--stroke);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+    }
+
+    /* Top bar */
+    header{
+      position: sticky;
+      top: 14px;
+      z-index: 50;
+    }
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding: 14px 16px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      text-decoration:none; color: var(--text);
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+    .logo{
+      width:42px; height:42px;
+      border-radius: 14px;
       overflow:hidden;
+      border: 1px solid rgba(255,255,255,.16);
       background: rgba(255,255,255,.06);
       display:grid; place-items:center;
+      flex: 0 0 auto;
     }
-    .logoWrap img{width:100%; height:100%; object-fit:cover; display:block;}
-    .links{display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;}
-    .chip{
-      color:var(--muted); text-decoration:none;
-      padding:10px 12px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.06);
-      font-size:14px;
-      transition:.15s;
+    .logo img{
+      width:100%; height:100%;
+      object-fit:cover; display:block;
     }
-    .chip:hover{transform:translateY(-1px); background:rgba(255,255,255,.09); color:var(--text)}
-    .btn{
-      display:inline-flex; align-items:center; gap:10px;
-      padding:11px 14px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.16);
-      background:linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.08));
-      color:var(--text); text-decoration:none; font-weight:800;
-      transition:.15s;
-      white-space:nowrap;
-    }
-    .btn:hover{transform:translateY(-1px); filter:brightness(1.08)}
-    .btn.primary{
-      border-color:rgba(255,255,255,.22);
-      background: linear-gradient(135deg, rgba(120,70,255,.55), rgba(0,255,200,.22));
+    .brand small{
+      display:block;
+      margin-top:2px;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: .1px;
     }
 
-    /* hero */
-    .hero{margin-top:18px; padding:28px; overflow:hidden;}
-    .heroGrid{display:grid; grid-template-columns: 1.25fr .75fr; gap:18px; align-items:stretch;}
+    .nav{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; align-items:center;
+    }
+    .chip{
+      text-decoration:none;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      transition: .15s ease;
+    }
+    .chip:hover{ transform: translateY(-1px); color: var(--text); background: rgba(255,255,255,.07); }
+    .btn{
+      text-decoration:none;
+      color: var(--text);
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 11px 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.08);
+      transition: .15s ease;
+      white-space: nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.08); }
+    .btn.primary{
+      border-color: rgba(255,255,255,.20);
+      background: linear-gradient(135deg, rgba(120,70,255,.45), rgba(0,255,200,.18));
+    }
+
+    /* Hero (big) */
+    .hero{
+      margin-top: 18px;
+      padding: 30px;
+      overflow:hidden;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items: stretch;
+    }
     .tag{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 12px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.06);
-      color:rgba(255,255,255,.86);
-      font-size:12px;
+      display:inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.86);
+      font-size: 12px;
+      font-weight: 700;
     }
     h1{
-      font-size: clamp(38px, 5vw, 64px);
-      line-height:1.03;
-      margin:12px 0 12px;
-      letter-spacing:-.9px;
+      margin: 12px 0 12px;
+      font-size: clamp(40px, 5.2vw, 68px);
+      line-height: 1.02;
+      letter-spacing: -1px;
     }
-    .sub{color:var(--muted); font-size:16px; line-height:1.65; margin:0 0 18px; max-width:62ch;}
-    .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
-    .miniRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;}
+    .sub{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.65;
+      max-width: 62ch;
+    }
+    .cta{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top: 10px;
+    }
+    .mini{
+      margin-top: 16px;
+      display:flex; gap:10px; flex-wrap:wrap;
+    }
     .pill{
-      padding:10px 12px; border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.05);
-      font-size:13px;
-      color:rgba(255,255,255,.86);
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.84);
+      font-size: 13px;
+      font-weight: 650;
     }
 
-    /* showcase swap */
-    .showcase{padding:18px; display:flex; flex-direction:column; justify-content:space-between; gap:12px;}
-    .showTitle{display:flex; justify-content:space-between; align-items:center; gap:10px;}
-    .showTitle small{color:var(--muted)}
-    .frame{
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
-      overflow:hidden;
-      aspect-ratio: 4/3;
-      position:relative;
+    /* Showcase (simple) */
+    .showcase{
+      padding: 18px;
+      display:flex;
+      flex-direction: column;
+      gap: 12px;
+      justify-content: space-between;
     }
-    .frame img{
-      width:100%; height:100%; object-fit:cover; display:block;
-      transition: opacity .35s ease;
+    .showHead{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
     }
-    .frame .cap{
-      position:absolute; left:12px; bottom:12px;
-      padding:8px 10px; border-radius:999px;
-      font-size:12px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(0,0,0,.35);
-      backdrop-filter:blur(10px);
-    }
-    .dots{display:flex; gap:6px; justify-content:center; margin-top:10px;}
-    .dot{width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.22); border:1px solid rgba(255,255,255,.12); cursor:pointer;}
-    .dot.on{background:rgba(255,255,255,.72)}
+    .showHead b{ font-size: 14px; }
+    .showHead span{ color: var(--muted); font-size: 12px; }
 
-    /* sections */
-    section{margin-top:18px;}
-    .sec{padding:18px;}
-    .sec h2{margin:0 0 10px; font-size:20px;}
-    .two{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
-    .card{padding:14px; border-radius:18px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.05);}
-    .card h3{margin:0 0 6px; font-size:16px;}
-    .card p{margin:0; color:var(--muted); line-height:1.6; font-size:14px;}
-
-    /* reviews gallery */
-    .reviewsGrid{
+    .grid{
       display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:12px;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
     }
     .shot{
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.04);
+      border-radius: 18px;
       overflow:hidden;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
       aspect-ratio: 4/3;
       position:relative;
     }
     .shot img{
-      width:100%; height:100%; object-fit:cover; display:block;
-      transition: transform .25s ease, opacity .25s ease;
+      width:100%; height:100%;
+      object-fit: cover;
+      display:block;
       opacity:.95;
+      transition: transform .22s ease, opacity .22s ease;
     }
-    .shot:hover img{transform:scale(1.06); opacity:1;}
-    .shot .label{
-      position:absolute; left:12px; bottom:12px;
-      padding:8px 10px; border-radius:999px;
-      font-size:12px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(0,0,0,.35);
-      backdrop-filter:blur(10px);
+    .shot:hover img{ transform: scale(1.06); opacity:1; }
+    .shot .cap{
+      position:absolute; left:10px; bottom:10px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.35);
     }
 
-    footer{margin-top:18px; padding:16px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; color:var(--muted); font-size:13px;}
+    /* Store strip */
+    .storeStrip{
+      margin-top: 18px;
+      padding: 18px;
+      display:flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .storeStrip p{ margin:0; color: var(--muted); line-height:1.6; }
+
+    footer{
+      margin-top: 18px;
+      padding: 16px;
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
 
     @media (max-width: 900px){
-      header{top:10px}
-      .heroGrid{grid-template-columns:1fr}
-      .two{grid-template-columns:1fr}
-      .reviewsGrid{grid-template-columns:1fr}
+      header{ top: 10px; }
+      .heroGrid{ grid-template-columns: 1fr; }
+      .grid{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
-  <div class="wallpaper" aria-hidden="true"></div>
-  <div class="blobs" aria-hidden="true">
-    <div class="blob b1"></div>
-    <div class="blob b2"></div>
-    <div class="blob b3"></div>
-  </div>
+  <div class="bg" aria-hidden="true"></div>
 
-  <div class="container">
-    <header class="glass">
-      <div class="nav">
+  <div class="wrap">
+    <header class="panel">
+      <div class="topbar">
         <a class="brand" href="#top">
-          <div class="logoWrap">
+          <div class="logo">
             <img src="assets/images/logo.png" alt="GrapiX LK logo"
                  onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)';" />
           </div>
           <div>
-            <div style="font-size:14px;opacity:.95;">GrapiX LK</div>
-            <div style="font-size:12px;color:var(--muted);margin-top:2px;">Design • Branding • Digital</div>
+            GrapiX LK
+            <small>Premium matte design • Fast delivery</small>
           </div>
         </a>
 
-        <nav class="links">
-          <a class="chip" href="#services">Services</a>
-          <a class="chip" href="#work">Work</a>
-          <a class="chip" href="#reviews">Reviews</a>
+        <nav class="nav">
+          <a class="chip" href="#showcase">Showcase</a>
           <a class="chip" href="store.html">Store</a>
-          <a class="btn primary" href="#contact">Get Quote</a>
+          <a class="btn primary" href="https://wa.me/94723562484" target="_blank" rel="noopener">WhatsApp</a>
         </nav>
       </div>
     </header>
 
-    <main id="top" class="glass hero">
+    <main id="top" class="panel hero">
       <div class="heroGrid">
         <div>
-          <span class="tag">Premium Design Studio • Fast Delivery</span>
-          <h1>Make your brand look premium.</h1>
+          <span class="tag">Logos • Social Media • Branding • Print</span>
+          <h1>Simple. Premium. Matte.</h1>
           <p class="sub">
-            Logos, social media designs, branding, and print-ready creatives.
-            Clean, modern, and made to stand out.
+            We create clean modern designs that make your business look trusted and professional.
+            Message us on WhatsApp or browse our Store packages.
           </p>
 
           <div class="cta">
-            <a class="btn primary" href="https://wa.me/94723562484" target="_blank" rel="noopener">WhatsApp Quote</a>
-            <a class="btn" href="#work">View Work</a>
+            <a class="btn primary" href="https://wa.me/94723562484" target="_blank" rel="noopener">Get a Quote</a>
             <a class="btn" href="store.html">Open Store</a>
+            <a class="btn" href="#showcase">View Showcase</a>
           </div>
 
-          <div class="miniRow">
+          <div class="mini">
             <div class="pill">✅ Clean Premium Look</div>
             <div class="pill">⚡ Quick Delivery</div>
             <div class="pill">🎯 For Brands & Businesses</div>
           </div>
         </div>
 
-        <aside class="glass showcase">
-          <div class="showTitle">
-            <div class="tag">Design Showcase</div>
-            <small id="showLabel">Logo Design</small>
+        <aside id="showcase" class="panel showcase">
+          <div class="showHead">
+            <b>Design Showcase</b>
+            <span>Tap / hover to preview</span>
           </div>
 
-          <div class="frame">
-            <img id="showImg" src="assets/images/show1.jpg" alt="Design showcase"
-                 onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)';" />
-            <div class="cap" id="showCap">Logo Design</div>
+          <!-- Upload these to assets/images/ -->
+          <div class="grid">
+            <div class="shot">
+              <img src="assets/images/show1.jpg" alt="Showcase 1"
+                   onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)';" />
+              <div class="cap">Show 01</div>
+            </div>
+            <div class="shot">
+              <img src="assets/images/show2.jpg" alt="Showcase 2"
+                   onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)';" />
+              <div class="cap">Show 02</div>
+            </div>
+            <div class="shot">
+              <img src="assets/images/show3.jpg" alt="Showcase 3"
+                   onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)';" />
+              <div class="cap">Show 03</div>
+            </div>
+            <div class="shot">
+              <img src="assets/images/show4.jpg" alt="Showcase 4"
+                   onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)';" />
+              <div class="cap">Show 04</div>
+            </div>
           </div>
-
-          <div class="dots" id="dots"></div>
         </aside>
       </div>
     </main>
 
-    <section id="services" class="glass sec">
-      <h2>Services</h2>
-      <div class="two">
-        <div class="card">
-          <h3>Branding & Logo</h3>
-          <p>Modern logo concepts, brand colors, and clean identity for your business.</p>
-        </div>
-        <div class="card">
-          <h3>Social Media Designs</h3>
-          <p>Posts, flyers, banners, thumbnails — premium designs that catch attention.</p>
-        </div>
+    <section class="panel storeStrip">
+      <div>
+        <b style="font-size:16px;">Ready to order?</b>
+        <p>Browse packages in the Store or message us on WhatsApp.</p>
+      </div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn" href="store.html">Go to Store</a>
+        <a class="btn primary" href="https://wa.me/94723562484" target="_blank" rel="noopener">WhatsApp Now</a>
       </div>
     </section>
 
-    <section id="work" class="glass sec">
-      <h2>Work</h2>
-      <div class="two">
-        <div class="card">
-          <h3>Design Showcase</h3>
-          <p>Our showcase swaps automatically. Upload show1–show4 images to update it.</p>
-        </div>
-        <div class="card">
-          <h3>Packages in Store</h3>
-          <p>Want a package? Check our Store and message us on WhatsApp for quick order.</p>
-          <div style="margin-top:12px;">
-            <a class="btn" href="store.html">Browse Store</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="reviews" class="glass sec">
-      <h2>Customer Reviews</h2>
-      <p style="margin:0 0 12px; color:var(--muted); line-height:1.6;">
-        Real feedback from our customers.
-      </p>
-
-      <!-- Upload review screenshots as review1.png, review2.png, review3.png ... -->
-      <div class="reviewsGrid">
-        <div class="shot">
-          <img src="assets/images/review1.png" alt="Customer review 1"
-               onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)';" />
-          <div class="label">Review 01</div>
-        </div>
-        <div class="shot">
-          <img src="assets/images/review2.png" alt="Customer review 2"
-               onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)';" />
-          <div class="label">Review 02</div>
-        </div>
-        <div class="shot">
-          <img src="assets/images/review3.png" alt="Customer review 3"
-               onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)';" />
-          <div class="label">Review 03</div>
-        </div>
-      </div>
-
-      <div style="margin-top:12px; color:var(--muted); font-size:13px;">
-        Add more reviews by uploading <b>review4.png</b>, <b>review5.png</b>… and I’ll expand this grid anytime.
-      </div>
-    </section>
-
-    <section id="contact" class="glass sec">
-      <h2>Get Quote</h2>
-      <div class="two">
-        <div class="card">
-          <h3>WhatsApp</h3>
-          <p>Send your requirement and we’ll reply with price & delivery time.</p>
-          <div style="margin-top:12px;">
-            <a class="btn primary" href="https://wa.me/94723562484" target="_blank" rel="noopener">Message on WhatsApp</a>
-          </div>
-        </div>
-        <div class="card">
-          <h3>Store Orders</h3>
-          <p>See packages in Store. Simple & clear for customers.</p>
-        </div>
-      </div>
-    </section>
-
-    <footer class="glass">
+    <footer class="panel">
       <div>© <span id="year"></span> GrapiX LK</div>
       <div style="display:flex; gap:10px; flex-wrap:wrap;">
         <a class="chip" href="store.html">Store</a>
@@ -366,48 +364,6 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Auto-swapping showcase images
-    const slides = [
-      { src: "assets/images/show1.jpg", label: "Logo Design" },
-      { src: "assets/images/show2.jpg", label: "Social Media Post" },
-      { src: "assets/images/show3.jpg", label: "Flyer / Poster" },
-      { src: "assets/images/show4.jpg", label: "Branding Banner" },
-    ];
-
-    const img = document.getElementById("showImg");
-    const cap = document.getElementById("showCap");
-    const lab = document.getElementById("showLabel");
-    const dotsWrap = document.getElementById("dots");
-
-    let i = 0;
-    slides.forEach((_, idx) => {
-      const d = document.createElement("div");
-      d.className = "dot" + (idx === 0 ? " on" : "");
-      d.addEventListener("click", () => setSlide(idx, true));
-      dotsWrap.appendChild(d);
-    });
-
-    function setSlide(idx, manual=false){
-      i = idx;
-      const s = slides[i];
-      img.style.opacity = "0";
-      setTimeout(() => {
-        img.src = s.src;
-        cap.textContent = s.label;
-        lab.textContent = s.label;
-        img.style.display = "block";
-        img.style.opacity = "1";
-        [...dotsWrap.children].forEach((d, k) => d.classList.toggle("on", k === i));
-      }, 220);
-
-      if(manual){
-        clearInterval(timer);
-        timer = setInterval(next, 2500);
-      }
-    }
-    function next(){ setSlide((i + 1) % slides.length); }
-    let timer = setInterval(next, 2500);
   </script>
 </body>
 </html>
