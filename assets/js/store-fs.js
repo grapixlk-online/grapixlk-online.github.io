@@ -69,7 +69,6 @@ function initStore(){
     `;
   }
 
-  // live updates
   const qy = query(productsCol, orderBy("createdAt", "desc"));
   onSnapshot(qy, (snap)=>{
     all = snap.docs.map(d => ({ id: d.id, ...d.data() }));
@@ -157,17 +156,15 @@ function initAdmin(){
     const title = f_title.value.trim();
     const category = f_category.value.trim() || "Service";
     const price = Number(f_price.value || 0);
-    const image = f_image.value.trim(); // assets/images/xxx.jpg or full URL
+    const image = f_image.value.trim();
     const desc = f_desc.value.trim();
 
     if(!title) return alert("Title is required");
 
-    const data = { title, category, price, image, desc, createdAt: Date.now() };
-
     if(currentId){
       await updateDoc(doc(db, "products", currentId), { title, category, price, image, desc });
     }else{
-      await addDoc(productsCol, data);
+      await addDoc(productsCol, { title, category, price, image, desc, createdAt: Date.now() });
     }
     closeModal();
   }
@@ -208,7 +205,6 @@ function initAdmin(){
     });
   }
 
-  // Live list
   const qy = query(productsCol, orderBy("createdAt", "desc"));
   onSnapshot(qy, (snap)=>{
     items = snap.docs.map(d => ({ id: d.id, ...d.data() }));
