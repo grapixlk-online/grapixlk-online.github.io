@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin - GrapiX LK</title>
+  <link rel="stylesheet" href="assets/css/store.css">
+</head>
+<body data-page="admin">
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <b>GrapiX LK</b>
+        <h1>Admin</h1>
+      </div>
+      <div class="actions">
+        <a class="btn" href="store.html">← Store</a>
+        <button class="btn danger" id="adminLogoutBtn">Logout</button>
+      </div>
+    </div>
+
+    <!-- Gate -->
+    <div id="adminGate" class="card" style="padding:14px;">
+      <b>Enter Admin Passcode</b>
+      <div class="small" style="margin-top:6px;">(Basic protection only — GitHub Pages has no real auth)</div>
+
+      <div style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
+        <input id="adminPass" class="input" placeholder="Passcode" type="password" style="max-width:260px;">
+        <button class="btn primary" id="adminLoginBtn">Login</button>
+      </div>
+      <div class="small" style="margin-top:10px; opacity:.8;">
+        Tip: Change passcode inside <b>assets/js/store.js</b>
+      </div>
+    </div>
+
+    <!-- Admin panel -->
+    <div id="adminPanel" style="display:none;">
+      <div class="actions" style="justify-content:flex-start; padding:10px 0 16px;">
+        <button class="btn good" id="addBtn">+ Add Product</button>
+      </div>
+
+      <div id="adminList" style="display:grid; gap:12px;"></div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="modalWrap" class="modalWrap">
+    <div class="modal">
+      <h3 id="modalTitle">Add Product</h3>
+
+      <div class="form">
+        <div class="full" style="display:none;">
+          <div class="label">ID</div>
+          <input id="f_id" class="field" disabled />
+        </div>
+
+        <div class="full">
+          <div class="label">Title *</div>
+          <input id="f_title" class="field" placeholder="e.g. YouTube Thumbnail Design" />
+        </div>
+
+        <div>
+          <div class="label">Category</div>
+          <input id="f_category" class="field" placeholder="e.g. Branding / Social Media" />
+        </div>
+
+        <div>
+          <div class="label">Price (LKR)</div>
+          <input id="f_price" class="field" type="number" placeholder="e.g. 5990" />
+        </div>
+
+        <div class="full">
+          <div class="label">Image path</div>
+          <input id="f_image" class="field" placeholder="assets/images/product1.jpg" />
+          <div class="small" style="margin-top:6px;">Upload image into assets/images/ then put path here.</div>
+        </div>
+
+        <div class="full">
+          <div class="label">Description</div>
+          <textarea id="f_desc" class="field" rows="4" placeholder="Short service details..."></textarea>
+        </div>
+      </div>
+
+      <div class="modalActions">
+        <button class="btn danger" id="deleteBtn" style="display:none;">Delete</button>
+        <button class="btn" id="cancelBtn">Cancel</button>
+        <button class="btn primary" id="saveBtn">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/store.js"></script>
+</body>
+</html>
