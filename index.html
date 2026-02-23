@@ -3,338 +3,159 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GrapiX LK — Premium Design Studio</title>
-  <meta name="description" content="GrapiX LK — premium graphic design & digital solutions. Logos, social media designs, branding, printing." />
+  <title>GrapiX LK — Premium Graphic Design</title>
+  <meta name="description" content="GrapiX LK — Logos, social media designs, branding, print-ready creatives. Fast delivery." />
 
   <style>
     :root{
-      --bg: #06070b;
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.72);
-      --glass: rgba(255,255,255,.08);
-      --glass2: rgba(255,255,255,.12);
-      --stroke: rgba(255,255,255,.14);
-      --shadow: 0 18px 60px rgba(0,0,0,.55);
-      --radius: 22px;
+      --bg:#06070b;
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.70);
+      --glass:rgba(255,255,255,.08);
+      --stroke:rgba(255,255,255,.14);
+      --shadow:0 18px 60px rgba(0,0,0,.55);
+      --r:22px;
     }
-
-    *{ box-sizing: border-box; }
-    html{ scroll-behavior:smooth; }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color: var(--text);
-      background: radial-gradient(1200px 700px at 20% 10%, rgba(120,70,255,.25), transparent 60%),
-                  radial-gradient(900px 600px at 80% 20%, rgba(0,255,200,.18), transparent 55%),
-                  radial-gradient(1000px 650px at 50% 85%, rgba(255,60,140,.16), transparent 60%),
-                  var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1100px 650px at 18% 8%, rgba(120,70,255,.24), transparent 60%),
+        radial-gradient(900px 600px at 80% 18%, rgba(0,255,200,.16), transparent 55%),
+        radial-gradient(1000px 650px at 52% 90%, rgba(255,60,140,.14), transparent 60%),
+        var(--bg);
       overflow-x:hidden;
     }
 
-    /* Animated grain + glow */
-    .noise{
-      pointer-events:none;
-      position:fixed; inset:0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.15'/%3E%3C/svg%3E");
-      mix-blend-mode: overlay;
-      opacity:.35;
-    }
-    .blobs{
-      position:fixed; inset:0; pointer-events:none;
-      filter: blur(40px);
-      opacity:.85;
-    }
-    .blob{
-      position:absolute;
-      width:520px; height:520px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.22), transparent 50%),
-                  radial-gradient(circle at 70% 60%, rgba(255,255,255,.08), transparent 55%);
-      transform: translate3d(0,0,0);
-      animation: float 12s ease-in-out infinite;
-    }
-    .blob.b1{ left:-160px; top:-140px; background-color: rgba(120,70,255,.25); animation-delay:0s;}
-    .blob.b2{ right:-220px; top:40px; background-color: rgba(0,255,200,.18); animation-delay: -3s;}
-    .blob.b3{ left:20%; bottom:-260px; background-color: rgba(255,60,140,.16); animation-delay: -6s;}
+    /* subtle moving blobs */
+    .blobs{position:fixed; inset:0; pointer-events:none; filter:blur(40px); opacity:.85;}
+    .blob{position:absolute; width:520px; height:520px; border-radius:999px; animation:float 12s ease-in-out infinite;}
+    .b1{left:-170px; top:-150px; background:rgba(120,70,255,.25)}
+    .b2{right:-230px; top:50px; background:rgba(0,255,200,.16); animation-delay:-3s}
+    .b3{left:25%; bottom:-270px; background:rgba(255,60,140,.14); animation-delay:-6s}
+    @keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-28px) scale(1.04)}}
 
-    @keyframes float{
-      0%,100%{ transform: translate3d(0,0,0) scale(1); }
-      50%{ transform: translate3d(0,-28px,0) scale(1.04); }
-    }
-
-    /* Layout */
-    .container{
-      width:min(1100px, 92vw);
-      margin:0 auto;
-      padding: 26px 0 70px;
-      position:relative;
-      z-index:2;
-    }
-
-    /* Glass */
+    .container{width:min(1100px, 92vw); margin:0 auto; padding:20px 0 70px; position:relative; z-index:2;}
     .glass{
-      background: linear-gradient(180deg, var(--glass2), var(--glass));
-      border: 1px solid var(--stroke);
-      box-shadow: var(--shadow);
-      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+      border:1px solid var(--stroke);
+      box-shadow:var(--shadow);
+      border-radius:var(--r);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
     }
 
-    /* Navbar */
-    header{
-      position:sticky;
-      top:14px;
-      z-index:50;
-      margin: 14px auto 0;
-    }
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 14px 16px;
-      gap: 12px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      text-decoration:none; color: var(--text);
-      font-weight:800;
-      letter-spacing: .4px;
-    }
+    /* nav */
+    header{position:sticky; top:14px; z-index:50;}
+    .nav{display:flex; justify-content:space-between; align-items:center; padding:14px 16px; gap:12px;}
+    .brand{display:flex; gap:10px; align-items:center; text-decoration:none; color:var(--text); font-weight:800;}
     .logo{
-      width:38px; height:38px;
-      border-radius: 14px;
+      width:38px; height:38px; border-radius:14px;
       border:1px solid rgba(255,255,255,.18);
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 45%),
-        linear-gradient(135deg, rgba(120,70,255,.9), rgba(0,255,200,.75));
-      box-shadow: 0 10px 30px rgba(0,0,0,.4);
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 45%),
+                  linear-gradient(135deg, rgba(120,70,255,.9), rgba(0,255,200,.75));
     }
-    .navlinks{
-      display:flex; gap: 10px; align-items:center;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
+    .links{display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;}
     .chip{
-      color: var(--muted);
-      text-decoration:none;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      transition: transform .15s ease, background .15s ease, border .15s ease;
-      font-size: 14px;
+      color:var(--muted); text-decoration:none;
+      padding:10px 12px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      font-size:14px;
+      transition:.15s;
     }
-    .chip:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.09);
-      border-color: rgba(255,255,255,.18);
-      color: rgba(255,255,255,.92);
-    }
+    .chip:hover{transform:translateY(-1px); background:rgba(255,255,255,.09); color:var(--text)}
     .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 11px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.16);
-      background: linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.08));
-      color: var(--text);
-      text-decoration:none;
-      font-weight:700;
-      transition: transform .15s ease, filter .15s ease;
+      display:inline-flex; align-items:center; gap:10px;
+      padding:11px 14px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background:linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.08));
+      color:var(--text); text-decoration:none; font-weight:800;
+      transition:.15s;
       white-space:nowrap;
     }
-    .btn:hover{ transform: translateY(-1px); filter: brightness(1.08); }
+    .btn:hover{transform:translateY(-1px); filter:brightness(1.08)}
     .btn.primary{
-      border-color: rgba(255,255,255,.22);
-      background: linear-gradient(135deg, rgba(120,70,255,.55), rgba(0,255,200,.28));
+      border-color:rgba(255,255,255,.22);
+      background: linear-gradient(135deg, rgba(120,70,255,.55), rgba(0,255,200,.24));
     }
 
-    /* Hero */
-    .hero{
-      margin-top: 18px;
-      padding: 26px;
-      overflow:hidden;
-      position:relative;
+    /* hero */
+    .hero{margin-top:18px; padding:26px; overflow:hidden;}
+    .heroGrid{display:grid; grid-template-columns: 1.25fr .75fr; gap:18px; align-items:stretch;}
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.86);
+      font-size:12px;
     }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap: 20px;
-      align-items:stretch;
+    h1{
+      font-size: clamp(34px, 4.6vw, 58px);
+      line-height:1.03;
+      margin:12px 0 12px;
+      letter-spacing:-.8px;
     }
-    .headline{
-      font-size: clamp(30px, 4vw, 48px);
-      line-height: 1.05;
-      margin: 6px 0 12px;
-      letter-spacing:-.6px;
-    }
-    .sub{
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.6;
-      margin:0 0 18px;
-      max-width: 60ch;
-    }
-    .ctaRow{ display:flex; gap:10px; flex-wrap:wrap; }
-    .stats{
-      margin-top: 18px;
-      display:flex;
-      gap: 10px;
-      flex-wrap:wrap;
-    }
-    .stat{
-      padding: 10px 12px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      min-width: 150px;
-    }
-    .stat b{ display:block; font-size: 18px; }
-    .stat span{ color: var(--muted); font-size: 13px; }
+    .sub{color:var(--muted); font-size:16px; line-height:1.65; margin:0 0 18px; max-width:62ch;}
+    .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
 
-    /* Right card */
-    .preview{
-      padding: 18px;
-      position:relative;
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      min-height: 280px;
-    }
-    .previewTop{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-    }
-    .badge{
-      font-size: 12px;
-      color: rgba(255,255,255,.86);
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
-      padding: 8px 10px;
-      border-radius: 999px;
-    }
-    .miniGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 14px;
-    }
-    .mini{
-      height: 92px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.12);
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,.18), transparent 50%),
-        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-      position:relative;
-      overflow:hidden;
-      transform: translateY(0);
-      animation: pop 3.5s ease-in-out infinite;
-    }
-    .mini:nth-child(2){ animation-delay:-1s; }
-    .mini:nth-child(3){ animation-delay:-2s; }
-    .mini:nth-child(4){ animation-delay:-3s; }
-
-    @keyframes pop{
-      0%,100%{ transform: translateY(0); }
-      50%{ transform: translateY(-6px); }
+    .miniRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;}
+    .pill{
+      padding:10px 12px; border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      font-size:13px;
+      color:rgba(255,255,255,.86);
     }
 
-    /* Sections */
-    section{ margin-top: 18px; }
-    .section{
-      padding: 20px;
-    }
-    .section h2{
-      margin: 0 0 12px;
-      font-size: 20px;
-      letter-spacing: -.2px;
-    }
-    .grid3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-    .card{
-      padding: 14px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      transition: transform .15s ease, background .15s ease, border .15s ease;
-    }
-    .card:hover{
-      transform: translateY(-2px);
-      background: rgba(255,255,255,.07);
-      border-color: rgba(255,255,255,.16);
-    }
-    .card h3{ margin: 0 0 6px; font-size: 16px; }
-    .card p{ margin:0; color: var(--muted); line-height:1.55; font-size: 14px; }
-
-    /* Portfolio */
-    .portfolio{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-    .shot{
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
+    /* showcase swap */
+    .showcase{padding:18px; display:flex; flex-direction:column; justify-content:space-between; gap:12px;}
+    .showTitle{display:flex; justify-content:space-between; align-items:center; gap:10px;}
+    .showTitle small{color:var(--muted)}
+    .frame{
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
       overflow:hidden;
       aspect-ratio: 4/3;
       position:relative;
-      isolation:isolate;
     }
-    .shot img{
-      width:100%; height:100%; object-fit:cover;
-      opacity:.9;
-      transform: scale(1.02);
-      transition: transform .25s ease, opacity .25s ease;
-      display:block;
-    }
-    .shot:hover img{ transform: scale(1.08); opacity:1; }
-    .shot .label{
-      position:absolute; left:12px; bottom:12px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.35);
-      backdrop-filter: blur(10px);
-    }
-
-    /* Footer */
-    footer{
-      margin-top: 18px;
-      padding: 18px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-      flex-wrap:wrap;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    /* Reveal on scroll */
-    .reveal{
-      opacity:0;
-      transform: translateY(14px);
-      transition: opacity .6s ease, transform .6s ease;
-    }
-    .reveal.on{
+    .frame img{
+      width:100%; height:100%; object-fit:cover; display:block;
       opacity:1;
-      transform: translateY(0);
+      transition: opacity .35s ease;
     }
+    .frame .cap{
+      position:absolute; left:12px; bottom:12px;
+      padding:8px 10px; border-radius:999px;
+      font-size:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.35);
+      backdrop-filter:blur(10px);
+    }
+    .dots{display:flex; gap:6px; justify-content:center; margin-top:10px;}
+    .dot{width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.22); border:1px solid rgba(255,255,255,.12);}
+    .dot.on{background:rgba(255,255,255,.72)}
 
-    /* Responsive */
+    /* simple sections */
+    section{margin-top:18px;}
+    .sec{padding:18px;}
+    .sec h2{margin:0 0 10px; font-size:20px;}
+    .two{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+    .card{padding:14px; border-radius:18px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.05);}
+    .card h3{margin:0 0 6px; font-size:16px;}
+    .card p{margin:0; color:var(--muted); line-height:1.6; font-size:14px;}
+
+    footer{margin-top:18px; padding:16px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; color:var(--muted); font-size:13px;}
+
     @media (max-width: 900px){
-      .heroGrid{ grid-template-columns: 1fr; }
-      .grid3{ grid-template-columns: 1fr; }
-      .portfolio{ grid-template-columns: 1fr; }
-      header{ top: 10px; }
+      header{top:10px}
+      .heroGrid{grid-template-columns:1fr}
+      .two{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -345,7 +166,6 @@
     <div class="blob b2"></div>
     <div class="blob b3"></div>
   </div>
-  <div class="noise" aria-hidden="true"></div>
 
   <div class="container">
     <header class="glass">
@@ -353,172 +173,175 @@
         <a class="brand" href="#top">
           <div class="logo" aria-hidden="true"></div>
           <div>
-            <div style="font-size:14px;opacity:.9;">GrapiX LK</div>
+            <div style="font-size:14px;opacity:.95;">GrapiX LK</div>
             <div style="font-size:12px;color:var(--muted);margin-top:2px;">Design • Branding • Digital</div>
           </div>
         </a>
 
-        <nav class="navlinks">
+        <nav class="links">
           <a class="chip" href="#services">Services</a>
-          <a class="chip" href="#portfolio">Work</a>
+          <a class="chip" href="#work">Work</a>
           <a class="chip" href="store.html">Store</a>
           <a class="btn primary" href="#contact">Get Quote</a>
-          <a class="btn" href="admin.html" title="Admin login">Admin</a>
         </nav>
       </div>
     </header>
 
-    <main id="top" class="glass hero reveal">
+    <main id="top" class="glass hero">
       <div class="heroGrid">
         <div>
-          <div class="badge">Premium • Glass UI • Fast</div>
-          <h1 class="headline">Premium design that makes your brand look expensive.</h1>
+          <span class="tag">Premium Design Studio • Fast Delivery</span>
+          <h1>Make your brand look premium.</h1>
           <p class="sub">
-            Logos, social media designs, business branding, and print-ready creatives.
-            Clean. Modern. Fast delivery. Let’s level up GrapiX LK online.
+            Logos, social media designs, branding, and print-ready creatives.
+            Clean, modern, and made to stand out.
           </p>
 
-          <div class="ctaRow">
-            <a class="btn primary" href="store.html">Open Store</a>
-            <a class="btn" href="#portfolio">View Work</a>
-            <a class="btn" href="#services">See Services</a>
+          <div class="cta">
+            <!-- Replace WhatsApp number below -->
+            <a class="btn primary" href="https://wa.me/94XXXXXXXXX" target="_blank" rel="noopener">WhatsApp Quote</a>
+            <a class="btn" href="#work">View Work</a>
+            <a class="btn" href="store.html">Open Store</a>
           </div>
 
-          <div class="stats">
-            <div class="stat">
-              <b>Fast Delivery</b>
-              <span>Quick turnaround</span>
-            </div>
-            <div class="stat">
-              <b>Premium Look</b>
-              <span>Modern glass UI</span>
-            </div>
-            <div class="stat">
-              <b>Client Focused</b>
-              <span>Revisions + support</span>
-            </div>
+          <div class="miniRow">
+            <div class="pill">✅ Clean Premium Look</div>
+            <div class="pill">⚡ Quick Delivery</div>
+            <div class="pill">🎯 For Brands & Businesses</div>
           </div>
         </div>
 
-        <div class="preview glass">
-          <div class="previewTop">
-            <div class="badge">Live Preview</div>
-            <div style="color:var(--muted);font-size:12px;">GrapiX LK</div>
+        <aside class="glass showcase">
+          <div class="showTitle">
+            <div class="tag">Design Showcase</div>
+            <small id="showLabel">Logo Design</small>
           </div>
 
-          <div class="miniGrid">
-            <div class="mini" title="Logo design"></div>
-            <div class="mini" title="Social media"></div>
-            <div class="mini" title="Branding"></div>
-            <div class="mini" title="Print designs"></div>
+          <div class="frame">
+            <!-- Upload images to assets/images/ -->
+            <img id="showImg" src="assets/images/show1.jpg" alt="Design showcase"
+                 onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)';" />
+            <div class="cap" id="showCap">Logo Design</div>
           </div>
 
-          <div style="margin-top:14px;color:var(--muted);font-size:13px;line-height:1.5;">
-            Tip: Upload your images to <b>assets/images/</b> and replace the portfolio images below.
-          </div>
-        </div>
+          <div class="dots" id="dots"></div>
+        </aside>
       </div>
     </main>
 
-    <section id="services" class="glass section reveal">
+    <section id="services" class="glass sec">
       <h2>Services</h2>
-      <div class="grid3">
+      <div class="two">
         <div class="card">
           <h3>Branding & Logo</h3>
-          <p>Modern logo concepts, brand colors, typography and clean identity systems.</p>
+          <p>Modern logo concepts, brand colors, and clean identity for your business.</p>
         </div>
         <div class="card">
           <h3>Social Media Designs</h3>
-          <p>Posts, flyers, banners, thumbnails and ad creatives that convert.</p>
-        </div>
-        <div class="card">
-          <h3>Print & Packaging</h3>
-          <p>Print-ready designs: cards, frames, stickers, menus, packaging mockups.</p>
+          <p>Posts, flyers, banners, thumbnails — premium designs that catch attention.</p>
         </div>
       </div>
     </section>
 
-    <section id="portfolio" class="glass section reveal">
-      <h2>Work Showcase</h2>
-
-      <!-- Replace these images with your own -->
-      <!-- Upload to: assets/images/ and change src paths -->
-      <div class="portfolio">
-        <a class="shot" href="store.html" title="Open store">
-          <img src="assets/images/work1.jpg" alt="Portfolio 1 (replace this image)" onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)';" />
-          <div class="label">Portfolio 01</div>
-        </a>
-
-        <a class="shot" href="store.html" title="Open store">
-          <img src="assets/images/work2.jpg" alt="Portfolio 2 (replace this image)" onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)';" />
-          <div class="label">Portfolio 02</div>
-        </a>
-
-        <a class="shot" href="store.html" title="Open store">
-          <img src="assets/images/work3.jpg" alt="Portfolio 3 (replace this image)" onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)';" />
-          <div class="label">Portfolio 03</div>
-        </a>
-      </div>
-
-      <div style="margin-top:12px;color:var(--muted);font-size:13px;">
-        If images don’t show yet, it’s okay — upload <b>work1.jpg</b>, <b>work2.jpg</b>, <b>work3.jpg</b> to <b>assets/images/</b>.
-      </div>
-    </section>
-
-    <section id="contact" class="glass section reveal">
-      <h2>Contact / Get Quote</h2>
-      <div class="grid3">
+    <section id="work" class="glass sec">
+      <h2>Work</h2>
+      <div class="two">
         <div class="card">
-          <h3>WhatsApp</h3>
+          <h3>See Our Latest Designs</h3>
+          <p>We update our work showcase regularly. Click below to check more.</p>
+          <div style="margin-top:12px;">
+            <a class="btn" href="store.html">Browse Store</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Upload Your Images</h3>
           <p>
-            Add your number here and I’ll make a WhatsApp “Buy Now” button.
+            Put showcase images in <b>assets/images/</b> and name them:
+            <b>show1.jpg</b>, <b>show2.jpg</b>, <b>show3.jpg</b>, <b>show4.jpg</b>.
           </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="glass sec">
+      <h2>Get Quote</h2>
+      <div class="two">
+        <div class="card">
+          <h3>Fast WhatsApp Response</h3>
+          <p>Send your requirement and we’ll reply with price & delivery time.</p>
+          <div style="margin-top:12px;">
+            <a class="btn primary" href="https://wa.me/94XXXXXXXXX" target="_blank" rel="noopener">Message on WhatsApp</a>
+          </div>
         </div>
         <div class="card">
           <h3>Store Orders</h3>
-          <p>
-            Customers can see products in <b>Store</b>. You add/remove in <b>Admin</b>.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Admin Panel</h3>
-          <p>
-            Use <b>admin.html</b> to add products. Store page updates automatically.
-          </p>
+          <p>Customers can view packages in the Store. Simple and clear.</p>
         </div>
       </div>
     </section>
 
     <footer class="glass">
-      <div>© <span id="year"></span> GrapiX LK • Built with GitHub Pages + Firebase</div>
+      <div>© <span id="year"></span> GrapiX LK</div>
       <div style="display:flex; gap:10px; flex-wrap:wrap;">
         <a class="chip" href="store.html">Store</a>
-        <a class="chip" href="admin.html">Admin</a>
         <a class="chip" href="#top">Back to top</a>
       </div>
     </footer>
   </div>
 
   <script>
-    // year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // reveal on scroll
-    const els = document.querySelectorAll(".reveal");
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("on"); });
-    }, { threshold: 0.12 });
-    els.forEach(el => io.observe(el));
+    // Simple auto-swapping showcase
+    const slides = [
+      { src: "assets/images/show1.jpg", label: "Logo Design" },
+      { src: "assets/images/show2.jpg", label: "Social Media Post" },
+      { src: "assets/images/show3.jpg", label: "Flyer / Poster" },
+      { src: "assets/images/show4.jpg", label: "Branding Banner" },
+    ];
 
-    // subtle parallax blobs
-    window.addEventListener("mousemove", (e)=>{
-      const x = (e.clientX / window.innerWidth - 0.5);
-      const y = (e.clientY / window.innerHeight - 0.5);
-      document.querySelectorAll(".blob").forEach((b, i)=>{
-        const k = (i+1) * 10;
-        b.style.transform = `translate3d(${x*k}px, ${y*k}px, 0)`;
-      });
-    }, { passive:true });
+    const img = document.getElementById("showImg");
+    const cap = document.getElementById("showCap");
+    const lab = document.getElementById("showLabel");
+    const dotsWrap = document.getElementById("dots");
+
+    let i = 0;
+    slides.forEach((_, idx) => {
+      const d = document.createElement("div");
+      d.className = "dot" + (idx === 0 ? " on" : "");
+      d.addEventListener("click", () => setSlide(idx, true));
+      dotsWrap.appendChild(d);
+    });
+
+    function setSlide(idx, manual=false){
+      i = idx;
+      const s = slides[i];
+
+      // fade
+      img.style.opacity = "0";
+      setTimeout(() => {
+        img.src = s.src;
+        cap.textContent = s.label;
+        lab.textContent = s.label;
+        img.style.display = "block";
+        img.style.opacity = "1";
+
+        // dots
+        [...dotsWrap.children].forEach((d, k) => d.classList.toggle("on", k === i));
+      }, 220);
+
+      if(manual){
+        // reset timer feel
+        clearInterval(timer);
+        timer = setInterval(next, 2500);
+      }
+    }
+
+    function next(){
+      setSlide((i + 1) % slides.length);
+    }
+
+    let timer = setInterval(next, 2500);
   </script>
 </body>
 </html>
