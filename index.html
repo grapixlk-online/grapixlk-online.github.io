@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>GrapiX LK — Premium Graphic Design</title>
-  <meta name="description" content="GrapiX LK — Logos, social media designs, branding, print-ready creatives. Fast delivery." />
 
   <style>
     :root{
@@ -23,19 +22,35 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
       color:var(--text);
       background:
-        radial-gradient(1100px 650px at 18% 8%, rgba(120,70,255,.24), transparent 60%),
-        radial-gradient(900px 600px at 80% 18%, rgba(0,255,200,.16), transparent 55%),
-        radial-gradient(1000px 650px at 52% 90%, rgba(255,60,140,.14), transparent 60%),
+        radial-gradient(1100px 650px at 18% 8%, rgba(120,70,255,.22), transparent 60%),
+        radial-gradient(900px 600px at 80% 18%, rgba(0,255,200,.14), transparent 55%),
+        radial-gradient(1000px 650px at 52% 90%, rgba(255,60,140,.12), transparent 60%),
         var(--bg);
       overflow-x:hidden;
     }
 
+    /* wallpaper background (your uploaded image) */
+    .wallpaper{
+      position:fixed; inset:0; z-index:0;
+      background-image: url("assets/images/bgwallpaper.png");
+      background-size: cover;
+      background-position: center;
+      opacity:.18;              /* adjust if you want more/less */
+      filter: blur(0px);
+      pointer-events:none;
+    }
+    .wallpaper::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(6,7,11,.75), rgba(6,7,11,.92));
+    }
+
     /* subtle moving blobs */
-    .blobs{position:fixed; inset:0; pointer-events:none; filter:blur(40px); opacity:.85;}
+    .blobs{position:fixed; inset:0; pointer-events:none; filter:blur(40px); opacity:.75; z-index:0;}
     .blob{position:absolute; width:520px; height:520px; border-radius:999px; animation:float 12s ease-in-out infinite;}
-    .b1{left:-170px; top:-150px; background:rgba(120,70,255,.25)}
-    .b2{right:-230px; top:50px; background:rgba(0,255,200,.16); animation-delay:-3s}
-    .b3{left:25%; bottom:-270px; background:rgba(255,60,140,.14); animation-delay:-6s}
+    .b1{left:-170px; top:-150px; background:rgba(120,70,255,.22)}
+    .b2{right:-230px; top:50px; background:rgba(0,255,200,.14); animation-delay:-3s}
+    .b3{left:25%; bottom:-270px; background:rgba(255,60,140,.12); animation-delay:-6s}
     @keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-28px) scale(1.04)}}
 
     .container{width:min(1100px, 92vw); margin:0 auto; padding:20px 0 70px; position:relative; z-index:2;}
@@ -52,12 +67,14 @@
     header{position:sticky; top:14px; z-index:50;}
     .nav{display:flex; justify-content:space-between; align-items:center; padding:14px 16px; gap:12px;}
     .brand{display:flex; gap:10px; align-items:center; text-decoration:none; color:var(--text); font-weight:800;}
-    .logo{
-      width:38px; height:38px; border-radius:14px;
+    .logoWrap{
+      width:42px; height:42px; border-radius:14px;
       border:1px solid rgba(255,255,255,.18);
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), transparent 45%),
-                  linear-gradient(135deg, rgba(120,70,255,.9), rgba(0,255,200,.75));
+      overflow:hidden;
+      background: rgba(255,255,255,.06);
+      display:grid; place-items:center;
     }
+    .logoWrap img{width:100%; height:100%; object-fit:cover; display:block;}
     .links{display:flex; gap:10px; align-items:center; flex-wrap:wrap; justify-content:flex-end;}
     .chip{
       color:var(--muted); text-decoration:none;
@@ -80,11 +97,11 @@
     .btn:hover{transform:translateY(-1px); filter:brightness(1.08)}
     .btn.primary{
       border-color:rgba(255,255,255,.22);
-      background: linear-gradient(135deg, rgba(120,70,255,.55), rgba(0,255,200,.24));
+      background: linear-gradient(135deg, rgba(120,70,255,.55), rgba(0,255,200,.22));
     }
 
     /* hero */
-    .hero{margin-top:18px; padding:26px; overflow:hidden;}
+    .hero{margin-top:18px; padding:28px; overflow:hidden;}
     .heroGrid{display:grid; grid-template-columns: 1.25fr .75fr; gap:18px; align-items:stretch;}
     .tag{
       display:inline-flex; align-items:center; gap:8px;
@@ -95,14 +112,13 @@
       font-size:12px;
     }
     h1{
-      font-size: clamp(34px, 4.6vw, 58px);
+      font-size: clamp(38px, 5vw, 64px);
       line-height:1.03;
       margin:12px 0 12px;
-      letter-spacing:-.8px;
+      letter-spacing:-.9px;
     }
     .sub{color:var(--muted); font-size:16px; line-height:1.65; margin:0 0 18px; max-width:62ch;}
     .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;}
-
     .miniRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;}
     .pill{
       padding:10px 12px; border-radius:16px;
@@ -126,7 +142,6 @@
     }
     .frame img{
       width:100%; height:100%; object-fit:cover; display:block;
-      opacity:1;
       transition: opacity .35s ease;
     }
     .frame .cap{
@@ -138,10 +153,10 @@
       backdrop-filter:blur(10px);
     }
     .dots{display:flex; gap:6px; justify-content:center; margin-top:10px;}
-    .dot{width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.22); border:1px solid rgba(255,255,255,.12);}
+    .dot{width:8px; height:8px; border-radius:999px; background:rgba(255,255,255,.22); border:1px solid rgba(255,255,255,.12); cursor:pointer;}
     .dot.on{background:rgba(255,255,255,.72)}
 
-    /* simple sections */
+    /* sections */
     section{margin-top:18px;}
     .sec{padding:18px;}
     .sec h2{margin:0 0 10px; font-size:20px;}
@@ -150,17 +165,48 @@
     .card h3{margin:0 0 6px; font-size:16px;}
     .card p{margin:0; color:var(--muted); line-height:1.6; font-size:14px;}
 
+    /* reviews gallery */
+    .reviewsGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    .shot{
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      overflow:hidden;
+      aspect-ratio: 4/3;
+      position:relative;
+    }
+    .shot img{
+      width:100%; height:100%; object-fit:cover; display:block;
+      transition: transform .25s ease, opacity .25s ease;
+      opacity:.95;
+    }
+    .shot:hover img{transform:scale(1.06); opacity:1;}
+    .shot .label{
+      position:absolute; left:12px; bottom:12px;
+      padding:8px 10px; border-radius:999px;
+      font-size:12px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(0,0,0,.35);
+      backdrop-filter:blur(10px);
+    }
+
     footer{margin-top:18px; padding:16px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; color:var(--muted); font-size:13px;}
 
     @media (max-width: 900px){
       header{top:10px}
       .heroGrid{grid-template-columns:1fr}
       .two{grid-template-columns:1fr}
+      .reviewsGrid{grid-template-columns:1fr}
     }
   </style>
 </head>
 
 <body>
+  <div class="wallpaper" aria-hidden="true"></div>
   <div class="blobs" aria-hidden="true">
     <div class="blob b1"></div>
     <div class="blob b2"></div>
@@ -171,7 +217,10 @@
     <header class="glass">
       <div class="nav">
         <a class="brand" href="#top">
-          <div class="logo" aria-hidden="true"></div>
+          <div class="logoWrap">
+            <img src="assets/images/logo.png" alt="GrapiX LK logo"
+                 onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)';" />
+          </div>
           <div>
             <div style="font-size:14px;opacity:.95;">GrapiX LK</div>
             <div style="font-size:12px;color:var(--muted);margin-top:2px;">Design • Branding • Digital</div>
@@ -181,6 +230,7 @@
         <nav class="links">
           <a class="chip" href="#services">Services</a>
           <a class="chip" href="#work">Work</a>
+          <a class="chip" href="#reviews">Reviews</a>
           <a class="chip" href="store.html">Store</a>
           <a class="btn primary" href="#contact">Get Quote</a>
         </nav>
@@ -198,8 +248,7 @@
           </p>
 
           <div class="cta">
-            <!-- Replace WhatsApp number below -->
-            <a class="btn primary" href="https://wa.me/94XXXXXXXXX" target="_blank" rel="noopener">WhatsApp Quote</a>
+            <a class="btn primary" href="https://wa.me/94723562484" target="_blank" rel="noopener">WhatsApp Quote</a>
             <a class="btn" href="#work">View Work</a>
             <a class="btn" href="store.html">Open Store</a>
           </div>
@@ -218,7 +267,6 @@
           </div>
 
           <div class="frame">
-            <!-- Upload images to assets/images/ -->
             <img id="showImg" src="assets/images/show1.jpg" alt="Design showcase"
                  onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)';" />
             <div class="cap" id="showCap">Logo Design</div>
@@ -247,19 +295,46 @@
       <h2>Work</h2>
       <div class="two">
         <div class="card">
-          <h3>See Our Latest Designs</h3>
-          <p>We update our work showcase regularly. Click below to check more.</p>
+          <h3>Design Showcase</h3>
+          <p>Our showcase swaps automatically. Upload show1–show4 images to update it.</p>
+        </div>
+        <div class="card">
+          <h3>Packages in Store</h3>
+          <p>Want a package? Check our Store and message us on WhatsApp for quick order.</p>
           <div style="margin-top:12px;">
             <a class="btn" href="store.html">Browse Store</a>
           </div>
         </div>
-        <div class="card">
-          <h3>Upload Your Images</h3>
-          <p>
-            Put showcase images in <b>assets/images/</b> and name them:
-            <b>show1.jpg</b>, <b>show2.jpg</b>, <b>show3.jpg</b>, <b>show4.jpg</b>.
-          </p>
+      </div>
+    </section>
+
+    <section id="reviews" class="glass sec">
+      <h2>Customer Reviews</h2>
+      <p style="margin:0 0 12px; color:var(--muted); line-height:1.6;">
+        Real feedback from our customers.
+      </p>
+
+      <!-- Upload review screenshots as review1.png, review2.png, review3.png ... -->
+      <div class="reviewsGrid">
+        <div class="shot">
+          <img src="assets/images/review1.png" alt="Customer review 1"
+               onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)';" />
+          <div class="label">Review 01</div>
         </div>
+        <div class="shot">
+          <img src="assets/images/review2.png" alt="Customer review 2"
+               onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)';" />
+          <div class="label">Review 02</div>
+        </div>
+        <div class="shot">
+          <img src="assets/images/review3.png" alt="Customer review 3"
+               onerror="this.style.display='none'; this.parentElement.style.background='rgba(255,255,255,.06)';" />
+          <div class="label">Review 03</div>
+        </div>
+      </div>
+
+      <div style="margin-top:12px; color:var(--muted); font-size:13px;">
+        Add more reviews by uploading <b>review4.png</b>, <b>review5.png</b>… and I’ll expand this grid anytime.
       </div>
     </section>
 
@@ -267,15 +342,15 @@
       <h2>Get Quote</h2>
       <div class="two">
         <div class="card">
-          <h3>Fast WhatsApp Response</h3>
+          <h3>WhatsApp</h3>
           <p>Send your requirement and we’ll reply with price & delivery time.</p>
           <div style="margin-top:12px;">
-            <a class="btn primary" href="https://wa.me/94XXXXXXXXX" target="_blank" rel="noopener">Message on WhatsApp</a>
+            <a class="btn primary" href="https://wa.me/94723562484" target="_blank" rel="noopener">Message on WhatsApp</a>
           </div>
         </div>
         <div class="card">
           <h3>Store Orders</h3>
-          <p>Customers can view packages in the Store. Simple and clear.</p>
+          <p>See packages in Store. Simple & clear for customers.</p>
         </div>
       </div>
     </section>
@@ -292,7 +367,7 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Simple auto-swapping showcase
+    // Auto-swapping showcase images
     const slides = [
       { src: "assets/images/show1.jpg", label: "Logo Design" },
       { src: "assets/images/show2.jpg", label: "Social Media Post" },
@@ -316,8 +391,6 @@
     function setSlide(idx, manual=false){
       i = idx;
       const s = slides[i];
-
-      // fade
       img.style.opacity = "0";
       setTimeout(() => {
         img.src = s.src;
@@ -325,22 +398,15 @@
         lab.textContent = s.label;
         img.style.display = "block";
         img.style.opacity = "1";
-
-        // dots
         [...dotsWrap.children].forEach((d, k) => d.classList.toggle("on", k === i));
       }, 220);
 
       if(manual){
-        // reset timer feel
         clearInterval(timer);
         timer = setInterval(next, 2500);
       }
     }
-
-    function next(){
-      setSlide((i + 1) % slides.length);
-    }
-
+    function next(){ setSlide((i + 1) % slides.length); }
     let timer = setInterval(next, 2500);
   </script>
 </body>
