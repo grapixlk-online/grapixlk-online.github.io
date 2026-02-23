@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Store - GrapixLK</title>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBE_5NvG7cYnw_cssw7YfvVxEHtp4M-Ajc",
+      authDomain: "grapixlk-online.firebaseapp.com",
+      projectId: "grapixlk-online",
+      storageBucket: "grapixlk-online.firebasestorage.app",
+      messagingSenderId: "18083338347",
+      appId: "1:18083338347:web:258b32ee4fe9c4d2bef92e"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function loadProducts() {
+      const querySnapshot = await getDocs(collection(db, "products"));
+      const list = document.getElementById("products");
+      querySnapshot.forEach((docSnap) => {
+        list.innerHTML += `
+          <div style="border:1px solid white;padding:10px;margin:10px;">
+            <h3>${docSnap.data().name}</h3>
+            <p>Rs.${docSnap.data().price}</p>
+          </div>
+        `;
+      });
+    }
+
+    loadProducts();
+  </script>
+</head>
+<body style="background:#111;color:white;text-align:center;padding:40px;">
+  <h1>Store</h1>
+  <div id="products"></div>
+</body>
+</html>
